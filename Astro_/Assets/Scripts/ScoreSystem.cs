@@ -11,7 +11,7 @@ public class ScoreSystem : MonoBehaviour
     void Start()
     {
         score = GetComponent<Text>();
-        counter = 000;
+        counter = 0;
         score.text=counter.ToString();
     }
 

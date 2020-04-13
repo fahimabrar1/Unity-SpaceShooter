@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,10 +14,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         speed = 20;
         tilt = 1;
-        rigidbody.rotation = Quaternion.Euler(-90.0f, 0.0f,0.0f);
-
     }
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !MenuManager.paused)
         {
             Instantiate(bolt, spawns[0].transform.position, spawns[0].transform.rotation);
             Instantiate(bolt, spawns[1].transform.position, spawns[1].transform.rotation);
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             0.0f,
             Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
             );
-        rigidbody.rotation = Quaternion.Euler(-90 , 0.0f, rigidbody.velocity.x * tilt);
+        rigidbody.rotation = Quaternion.Euler(0 , 0.0f, -rigidbody.velocity.x * tilt);
     }
 }
 
