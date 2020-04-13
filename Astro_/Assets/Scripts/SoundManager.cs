@@ -5,38 +5,83 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+     MusicManager musicManager;
     public static AudioClip background,explosion,shoot;
     static AudioSource audio;
     public Toggle sound, music;
     public static bool soundon, musicon;
 
-    OptionManager optionManager;
 
     private void Awake()
     {
-
         explosion = Resources.Load<AudioClip>("Explosion");
         shoot = Resources.Load<AudioClip>("PlayerShoot");
         background = Resources.Load<AudioClip>("bensound-scifi");
-        audio = GetComponent<AudioSource>();
-        audio.PlayOneShot(background);
-        
+        audio = GetComponent<AudioSource>();        
     }
 
     private void Start()
     {
-        //Loaddata();
+        musicManager = FindObjectOfType<MusicManager>();
         boolfuntions();
+        if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
+        {
+            soundon = true;
+            sound.isOn = soundon;
+        }
+        else
+        {
+            soundon = false;
+            sound.isOn = soundon;
+
+        }
+        if (PlayerPrefs.GetInt("Musicmute", 1) == 1)
+        {
+            musicon = true;
+            music.isOn = musicon;
+            audio.PlayOneShot(background);
+        }
+        else
+        {
+            musicon = false;
+            music.isOn = musicon;
+
+        }
     }
     public void boolfuntions()
     {
         sound.onValueChanged.AddListener(delegate {
-            soundon = sound.isOn;
+            if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
+            {
+                musicManager.ToggleSound();
+                soundon = true;
+                sound.isOn = soundon;
+            }
+            else
+            {
+                musicManager.ToggleSound();
+                soundon = false;
+                sound.isOn = soundon;
+
+            }
         });
 
         music.onValueChanged.AddListener(delegate
         {
-            musicon = music.isOn;
+            if (PlayerPrefs.GetInt("Musicmute", 1) == 1)
+            {
+                musicManager.ToggleMusic();
+                musicon = true;
+                music.isOn = musicon;
+
+            }
+            else
+            {
+                musicManager.ToggleMusic();
+                musicon = false;
+                music.isOn = musicon;
+
+            }
             Debug.Log("Music bool :" + musicon);
         });
     }

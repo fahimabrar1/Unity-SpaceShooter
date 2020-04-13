@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819b14571ef31574c9144a06a6132702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicManager: {fileID: 939131031024286880, guid: 8f4523c134fa58445ae2cee7cf2b16fb,
+    type: 3}
   sound: {fileID: 0}
   music: {fileID: 0}
-  soundtext: {fileID: 0}
-  musictext: {fileID: 0}

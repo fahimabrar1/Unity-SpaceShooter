@@ -147,13 +147,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 55192819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daebdfaf10d52dc4b8cd40b60ffedf31, type: 3}
+  m_Script: {fileID: 11500000, guid: ab678b3ed7f6d5c49ad90d84f6498295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 0}
-  music: {fileID: 0}
-  soundbool: 0
-  musicbool: 0
 --- !u!4 &55192821
 Transform:
   m_ObjectHideFlags: 0
