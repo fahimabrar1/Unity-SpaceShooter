@@ -1,2 +1,2 @@
-Base path: S:/Unity/Setup/2018.4.13f1/Editor/Data
+Base path: 'S:/Unity/Setup/Editor/Data', plugins path 'S:/Unity/Setup/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler

@@ -11,13 +11,13 @@ public class Asteroid : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("bolt"))
         {
-            Destroy(gameObject);
-            Destroy(other.gameObject);
+            GameHazard.reEnque(gameObject);
+            PlayerController.reEnque(other.gameObject);
             SoundManager.PlaySound("Explosion");
             ScoreSystem.UpdateScore();
         }else if (other.gameObject.tag.Equals("ship"))
         {
-            Destroy(gameObject);
+            GameHazard.reEnque(gameObject);
             SoundManager.PlaySound("Explosion");
 
             Destroy(other.gameObject);

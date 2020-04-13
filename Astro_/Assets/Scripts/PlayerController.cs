@@ -11,10 +11,21 @@ public class PlayerController : MonoBehaviour
     public GameObject bolt;
     public Boundry boundry;
     public GameObject[] spawns;
+
+    //Object Pulling
+
+    public static Queue<GameObject> boltqueue;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        boltqueue = new Queue<GameObject>();
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject obj = Instantiate(bolt);
+            obj.SetActive(false);
+            boltqueue.Enqueue(obj);
+        }
         speed = 20;
         tilt = 1;
     }
@@ -28,12 +39,11 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && !MenuManager.paused)
         {
-            Instantiate(bolt, spawns[0].transform.position, spawns[0].transform.rotation);
-            Instantiate(bolt, spawns[1].transform.position, spawns[1].transform.rotation);
+            gefromBoltQueue();
             SoundManager.PlaySound("PlayerShoot");
         }
     }
-
+   
     // Update is called once per fram e
     void FixedUpdate()
     {
@@ -50,6 +60,28 @@ public class PlayerController : MonoBehaviour
             );
         rigidbody.rotation = Quaternion.Euler(0 , 0.0f, -rigidbody.velocity.x * tilt);
     }
+
+
+
+    public void gefromBoltQueue()
+    {
+        GameObject obj = boltqueue.Dequeue();
+        GameObject obj1 = boltqueue.Dequeue();
+        obj.SetActive(true);
+        obj1.SetActive(true);
+
+        obj.transform.position = spawns[0].transform.position;
+        obj1.transform.position = spawns[1].transform.position;
+
+        obj.transform.rotation = spawns[0].transform.rotation;
+        obj1.transform.rotation = spawns[1].transform.rotation;
+    }
+    public static void reEnque(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+        boltqueue.Enqueue(gameObject);
+    }
+
 }
 
 [System.Serializable]
