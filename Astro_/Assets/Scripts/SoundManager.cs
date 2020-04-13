@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        Loaddata();
+        //Loaddata();
         boolfuntions();
     }
     public void boolfuntions()
@@ -84,7 +84,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Loaddata()
+    /*public void Loaddata()
     {
         OptionData data = SaveDataManager.LoadData();
         soundon = data.sound;
@@ -94,5 +94,5 @@ public class SoundManager : MonoBehaviour
         Debug.Log("Sound bool in Sound Manager:" + soundon);
         Debug.Log("Music bool in Sound Manager:" + musicon);
 
-    }
+    }*/
 }
