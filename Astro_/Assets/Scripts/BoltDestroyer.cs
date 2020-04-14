@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BoltDestroyer : MonoBehaviour
 {
-    Mover mover;
     private void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);

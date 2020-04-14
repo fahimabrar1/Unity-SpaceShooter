@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigidbody;
     [Range(10, 30)]
     public float speed,tilt;
-    public GameObject bolt;
+    public GameObject bolt,Paricle;
     public Boundry boundry;
     public GameObject[] spawns;
 
@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
 
     public static Queue<GameObject> boltqueue;
 
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +34,7 @@ public class PlayerController : MonoBehaviour
         speed = 20;
         tilt = 1;
     }
-    private void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-
-    }
+   
 
     private void Update()
     {
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
             );
         rigidbody.rotation = Quaternion.Euler(0 , 0.0f, -rigidbody.velocity.x * tilt);
+        Paricle.transform.position = gameObject.transform.position;
     }
 
 

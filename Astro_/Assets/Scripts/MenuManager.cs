@@ -7,14 +7,17 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
    
-    public GameObject panel,pausebutton;
+    public GameObject panel,pausebutton,death;
     public static bool paused;
+    public static bool plane;
     // Start is called before the first frame update
     void Start()
     {
         pausebutton.SetActive(true);
         panel.SetActive(false);
+        death.SetActive(false);
         paused = false;
+        plane = true;
         Time.timeScale = 1;
     }
 
@@ -26,7 +29,7 @@ public class MenuManager : MonoBehaviour
     
     public void PauseGame()
     {
-        if (!paused)
+        if (!paused && plane)
         {
             paused = true;
             panel.SetActive(true);
@@ -36,7 +39,7 @@ public class MenuManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        if (paused)
+        if (paused && plane)
         {
             paused = false;
             panel.SetActive(false);
@@ -44,11 +47,19 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    public static void DeadMenu()
+    {
+        
+    }
+    public static void RestartGame()
+    {
+
+    }
     public void GoToHome()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Home");
     }
    
-
+   
 }

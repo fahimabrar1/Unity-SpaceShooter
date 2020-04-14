@@ -19,7 +19,8 @@ public class Asteroid : MonoBehaviour
         {
             GameHazard.reEnque(gameObject);
             SoundManager.PlaySound("Explosion");
-
+            Debug.Log(other.gameObject.tag);
+            ParticleController.PlaneParticles();
             Destroy(other.gameObject);
             SoundManager.PlaySound("Explosion");
 
