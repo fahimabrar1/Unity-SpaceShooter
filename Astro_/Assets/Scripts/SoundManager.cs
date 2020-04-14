@@ -5,86 +5,48 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    private MusicManager musicManager;
-    public static AudioClip background,explosion,shoot;
-    static AudioSource audio;
+    static OptionManager optionManager;
     public Toggle sound, music;
     public static bool soundon, musicon;
 
 
-    private void Awake()
-    {
-        explosion = Resources.Load<AudioClip>("Explosion");
-        shoot = Resources.Load<AudioClip>("PlayerShoot");
-        background = Resources.Load<AudioClip>("bensound-scifi");
-        audio =  GetComponent<AudioSource>();
-    }
-
     private void Start()
     {
-        /*musicManager.getPer();*/
-        boolfuntions();
-        if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
+        optionManager = GameObject.FindObjectOfType<OptionManager>();
+        if (PlayerPrefs.GetInt("Soundmute", 1)==1)
         {
-            soundon = true;
-            sound.isOn = soundon;
+            sound.isOn = true;
         }
         else
         {
-            soundon = false;
-            sound.isOn = soundon;
-
+            sound.isOn = false;
         }
         if (PlayerPrefs.GetInt("Musicmute", 1) == 1)
         {
-            musicon = true;
-            music.isOn = musicon;
-            Debug.Log("audio Played on start");
-            audio.PlayOneShot(background);
+            music.isOn = true;
+            optionManager.Backgrounds();
         }
         else
         {
-            musicon = false;
-            music.isOn = musicon;
-
+            music.isOn = false;
         }
+
+        boolfuntions();
+
     }
+
     public void boolfuntions()
     {
         sound.onValueChanged.AddListener(delegate {
-            if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
-            {
-                musicManager.ToggleSound();
-                soundon = true;
-                sound.isOn = soundon;
-            }
-            else
-            {
-                musicManager.ToggleSound();
-                soundon = false;
-                sound.isOn = soundon;
-
-            }
+            optionManager.ToggleSound();
             Debug.Log("Sound bool :" + soundon);
 
         });
 
         music.onValueChanged.AddListener(delegate
         {
-            if (PlayerPrefs.GetInt("Musicmute", 1) == 1)
-            {
-                musicManager.ToggleMusic();
-                musicon = true;
-                music.isOn = musicon;
+            optionManager.ToggleMusic();
 
-            }
-            else
-            {
-                musicManager.ToggleMusic();
-                musicon = false;
-                music.isOn = musicon;
-
-            }
             Debug.Log("Music bool :" + musicon);
         });
     }
@@ -94,20 +56,20 @@ public class SoundManager : MonoBehaviour
         switch (clip)
         {
             case "Explosion":
-                if (soundon)
+                if (PlayerPrefs.GetInt("Soundmute",1)==1)
                 {
-                    audio.PlayOneShot(explosion);
+                    optionManager.Explode();  
                 }
                 break;
             case "PlayerShoot":
-                if (soundon)
+                if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
                 {
-                    audio.PlayOneShot(shoot);
+                    optionManager.Shoot();
                 }
                 break;
         }
     }
-    public  void SoundSystem()
+    /*public  void SoundSystem()
     {
         if (soundon)
         {
@@ -123,13 +85,12 @@ public class SoundManager : MonoBehaviour
         if (musicon)
         {
             musicon = false;
-            audio.Stop();
+            
         }
         else
         {
             musicon = true;
             Debug.Log("audio Played on MusicSystem");
-            audio.PlayOneShot(background);
         }
-    }
+    }*/
 }

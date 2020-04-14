@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
         pausebutton.SetActive(true);
         panel.SetActive(false);
         paused = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

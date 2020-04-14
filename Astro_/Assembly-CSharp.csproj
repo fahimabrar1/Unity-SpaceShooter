@@ -69,8 +69,7 @@
     <Compile Include="Assets\Scripts\HomeScreenManager.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Mover.cs" />
-    <Compile Include="Assets\Scripts\MusicManager.cs" />
-    <Compile Include="Assets\Scripts\OptionData.cs" />
+    <Compile Include="Assets\Scripts\MyPlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\OptionManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RandomRotator.cs" />

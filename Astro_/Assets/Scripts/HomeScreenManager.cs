@@ -7,10 +7,20 @@ using UnityEngine.SceneManagement;
 public class HomeScreenManager : MonoBehaviour
 {
 
-  
+    static OptionManager optionManager;
+
+    private void Awake()
+    {
+        optionManager = GameObject.FindObjectOfType<OptionManager>();
+
+    }
     public void LoadA(string scenename)
     {
         Debug.Log("sceneName to load: " + scenename);
+        if (scenename.Equals("Home"))
+        {
+            optionManager.StopAudio();
+        }
         SceneManager.LoadScene(scenename);
     }
     public void ExitGame()
