@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-     MusicManager musicManager;
+    private MusicManager musicManager;
     public static AudioClip background,explosion,shoot;
     static AudioSource audio;
     public Toggle sound, music;
@@ -17,12 +17,12 @@ public class SoundManager : MonoBehaviour
         explosion = Resources.Load<AudioClip>("Explosion");
         shoot = Resources.Load<AudioClip>("PlayerShoot");
         background = Resources.Load<AudioClip>("bensound-scifi");
-        audio = GetComponent<AudioSource>();        
+        audio =  GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        /*musicManager.getPer();*/
         boolfuntions();
         if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
         {
@@ -39,6 +39,7 @@ public class SoundManager : MonoBehaviour
         {
             musicon = true;
             music.isOn = musicon;
+            Debug.Log("audio Played on start");
             audio.PlayOneShot(background);
         }
         else
@@ -64,6 +65,8 @@ public class SoundManager : MonoBehaviour
                 sound.isOn = soundon;
 
             }
+            Debug.Log("Sound bool :" + soundon);
+
         });
 
         music.onValueChanged.AddListener(delegate
@@ -125,19 +128,8 @@ public class SoundManager : MonoBehaviour
         else
         {
             musicon = true;
+            Debug.Log("audio Played on MusicSystem");
             audio.PlayOneShot(background);
         }
     }
-
-    /*public void Loaddata()
-    {
-        OptionData data = SaveDataManager.LoadData();
-        soundon = data.sound;
-        musicon = data.music;
-        sound.isOn = soundon;
-        music.isOn = musicon;
-        Debug.Log("Sound bool in Sound Manager:" + soundon);
-        Debug.Log("Music bool in Sound Manager:" + musicon);
-
-    }*/
 }
