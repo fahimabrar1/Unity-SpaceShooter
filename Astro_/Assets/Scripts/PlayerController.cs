@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bolt,Paricle;
     public Boundry boundry;
     public GameObject[] spawns;
-    
+    Touch touch;
+    Vector3 vector,direction;
+    bool fire;
     //Object Pulling
 
     public static Queue<GameObject> boltqueue;
@@ -33,34 +35,86 @@ public class PlayerController : MonoBehaviour
         }
         speed = 20;
         tilt = 1;
+        fire = false;
+
+        StartCoroutine(UPDATE());
     }
-   
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !MenuManager.paused)
+        if (Input.GetMouseButtonDown(0) && !MenuManager.paused)
         {
             gefromBoltQueue();
             SoundManager.PlaySound("PlayerShoot");
+        }
+    }
+
+    IEnumerator UPDATE()
+    {
+        while (true)
+        {
+            if (fire)
+            {
+                if (!MenuManager.paused)
+                {
+                    gefromBoltQueue();
+                    SoundManager.PlaySound("PlayerShoot");
+                }
+            }
+
+            yield return new WaitForSeconds(0.4f);
         }
     }
    
     // Update is called once per fram e
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        if (Input.touchCount > 0)
+        {
+            if (!fire)
+            {
+                fire=true;
+            }
+            
+            Touch touch = Input.GetTouch(0);
+                vector = Camera.main.ScreenToWorldPoint(touch.position);
+                vector.y = 0;
+                vector.z = vector.z + 8;
+                Debug.Log(vector);
+                direction = (vector - transform.position);
+                rigidbody.velocity = new Vector3(direction.x, 0, direction.z) * speed;
+                rigidbody.position = new Vector3(
+                Mathf.Clamp(rigidbody.position.x, boundry.xMin, boundry.xMax),
+                0.0f,
+                Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
+                );
+                rigidbody.rotation = Quaternion.Euler(0, 0.0f, -rigidbody.velocity.x / 3 * tilt);
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    rigidbody.velocity = Vector3.zero;
+                }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rigidbody.velocity = movement*speed;
+        }
+        else
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+            if (fire)
+            {
+                fire = false;
+            }
 
-        rigidbody.position = new Vector3(
-            Mathf.Clamp(rigidbody.position.x,boundry.xMin,boundry.xMax),
-            0.0f,
-            Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
-            );
-        rigidbody.rotation = Quaternion.Euler(0 , 0.0f, -rigidbody.velocity.x * tilt);
-        Paricle.transform.position = gameObject.transform.position;
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rigidbody.velocity = movement * speed;
+
+            rigidbody.position = new Vector3(
+                Mathf.Clamp(rigidbody.position.x, boundry.xMin, boundry.xMax),
+                0.0f,
+                Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
+                );
+            rigidbody.rotation = Quaternion.Euler(0, 0.0f, -rigidbody.velocity.x * tilt);
+            Paricle.transform.position = gameObject.transform.position;
+        }    
     }
 
 
