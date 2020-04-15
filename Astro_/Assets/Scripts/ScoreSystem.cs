@@ -20,4 +20,9 @@ public class ScoreSystem : MonoBehaviour
         counter+=15;
         score.text = counter.ToString();
     }
+
+    public static Text getScore()
+    {
+        return score;
+    }
 }

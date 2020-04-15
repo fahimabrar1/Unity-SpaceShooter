@@ -27,5 +27,9 @@ public class HomeScreenManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public static void StopAudio()
+    {
+        optionManager.StopAudio();
+    }
     
 }

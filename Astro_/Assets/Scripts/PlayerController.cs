@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bolt,Paricle;
     public Boundry boundry;
     public GameObject[] spawns;
-
+    
     //Object Pulling
 
     public static Queue<GameObject> boltqueue;

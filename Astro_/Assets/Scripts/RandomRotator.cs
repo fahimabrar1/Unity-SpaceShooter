@@ -11,6 +11,7 @@ public class RandomRotator : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.angularVelocity = Random.insideUnitSphere * Random.Range(1,6);
     }
+    
 
 }
 

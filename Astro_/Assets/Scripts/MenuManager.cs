@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
    
     public GameObject panel,pausebutton,death;
     public static bool paused;
-    public static bool plane;
+    public static bool planealive;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,29 +17,35 @@ public class MenuManager : MonoBehaviour
         panel.SetActive(false);
         death.SetActive(false);
         paused = false;
-        plane = true;
+        planealive = true;
         Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!planealive)
+        {
+            PauseGame();
+        }
     }
     
     public void PauseGame()
     {
-        if (!paused && plane)
+        if (!paused && planealive)
         {
             paused = true;
             panel.SetActive(true);
             pausebutton.SetActive(false);
             Time.timeScale = 0;
+        }else if(!paused && !planealive)
+        {
+            death.SetActive(true);
         }
     }
     public void PlayGame()
     {
-        if (paused && plane)
+        if (paused && planealive)
         {
             paused = false;
             panel.SetActive(false);
@@ -49,17 +55,22 @@ public class MenuManager : MonoBehaviour
     }
     public static void DeadMenu()
     {
-        
+        planealive = false;
     }
-    public static void RestartGame()
+    public void RestartGame()
     {
-
+        HomeScreenManager.StopAudio();
+        SceneManager.LoadScene("Play");
     }
     public void GoToHome()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Home");
     }
-   
+    public void setScore()
+    {
+
+        Text score = ScoreSystem.getScore();
+    }
    
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     Rigidbody rigidbody;
+   
     public float speed;
     // Start is called before the first frame update
     void Start()
@@ -16,4 +17,5 @@ public class Mover : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.velocity = transform.forward * speed;
     }
+    
 }
