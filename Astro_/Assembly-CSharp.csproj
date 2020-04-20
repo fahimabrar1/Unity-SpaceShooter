@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\SaveDataManager.cs" />
     <Compile Include="Assets\Scripts\ScoreSystem.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\UpgradeSystem.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Unity/Astro_/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

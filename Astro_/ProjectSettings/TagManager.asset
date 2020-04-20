@@ -8,6 +8,9 @@ TagManager:
   - ship
   - asteriod
   - boundry
+  - counter
+  - BoltCollector
+  - AstroCollector
   layers:
   - Default
   - TransparentFX

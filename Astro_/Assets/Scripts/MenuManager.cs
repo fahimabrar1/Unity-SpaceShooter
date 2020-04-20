@@ -9,7 +9,10 @@ public class MenuManager : MonoBehaviour
    
     public GameObject panel,pausebutton,death;
     public static bool paused;
-    public static bool planealive;
+    public GameObject[] Ship;
+    public static bool planealive, setFinalScore;
+    public Text score;
+    string getscore;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,21 @@ public class MenuManager : MonoBehaviour
         panel.SetActive(false);
         death.SetActive(false);
         paused = false;
+        setFinalScore = false;
         planealive = true;
         Time.timeScale = 1;
+        if (PlayerPrefs.GetInt("craft", 0) == 0)
+        {
+            Instantiate(Ship[0], Ship[0].transform.position, Quaternion.identity);
+        }
+        else if (PlayerPrefs.GetInt("craft", 1) == 1)
+        {
+            Instantiate(Ship[1], Ship[1].transform.position, Quaternion.identity);
+        }
+        else if (PlayerPrefs.GetInt("craft", 2) == 2)
+        {
+            Instantiate(Ship[2], Ship[2].transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +42,12 @@ public class MenuManager : MonoBehaviour
     {
         if (!planealive)
         {
+            if (!setFinalScore)
+            {
+                setFinalScore = true;
+
+                setScore();
+            }
             PauseGame();
         }
     }
@@ -40,6 +62,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0;
         }else if(!paused && !planealive)
         {
+            score.text = getscore;
             death.SetActive(true);
         }
     }
@@ -69,8 +92,7 @@ public class MenuManager : MonoBehaviour
     }
     public void setScore()
     {
-
-        Text score = ScoreSystem.getScore();
+        getscore = ScoreSystem.getScore().text;
     }
    
 }

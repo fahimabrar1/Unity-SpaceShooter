@@ -21,6 +21,7 @@ public class GameHazard : MonoBehaviour
         {
             
             GameObject obj =Instantiate(hazard);
+            obj.transform.parent = GameObject.FindGameObjectWithTag("AstroCollector").transform;
             obj.SetActive(false);
             astros.Enqueue(obj);
         }

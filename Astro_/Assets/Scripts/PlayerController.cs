@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < 100; i++)
         {
             GameObject obj = Instantiate(bolt);
+            obj.transform.parent = GameObject.FindGameObjectWithTag("BoltCollector").transform;
             obj.SetActive(false);
             boltqueue.Enqueue(obj);
         }

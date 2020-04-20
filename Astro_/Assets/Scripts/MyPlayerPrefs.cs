@@ -11,7 +11,6 @@ public class MyPlayerPrefs : MonoBehaviour
         if (PlayerPrefs.GetInt("Soundmute", 1) == 1)
         {
             PlayerPrefs.SetInt("Soundmute", 1);
-
         }
         else
         {

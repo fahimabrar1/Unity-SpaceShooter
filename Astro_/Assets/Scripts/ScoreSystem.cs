@@ -7,19 +7,23 @@ public class ScoreSystem : MonoBehaviour
 {
     static Text score;
     static float counter;
+    
     // Start is called before the first frame update
     void Start()
     {
         score = GetComponent<Text>();
         counter = 0;
         score.text=counter.ToString();
+        Debug.Log("Started Score System");
     }
 
     public static void UpdateScore()
     {
         counter+=15;
         score.text = counter.ToString();
+        
     }
+    
 
     public static Text getScore()
     {
