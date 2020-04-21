@@ -66,7 +66,6 @@
     <Compile Include="Assets\Scripts\Asteroid.cs" />
     <Compile Include="Assets\Scripts\AstroParticles.cs" />
     <Compile Include="Assets\Scripts\BackgroundMover.cs" />
-    <Compile Include="Assets\Scripts\BoltDestroyer.cs" />
     <Compile Include="Assets\Scripts\GameHazard.cs" />
     <Compile Include="Assets\Scripts\HomeScreenManager.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
@@ -75,12 +74,15 @@
     <Compile Include="Assets\Scripts\OptionManager.cs" />
     <Compile Include="Assets\Scripts\PlaneParticles.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Points.cs" />
+    <Compile Include="Assets\Scripts\PointsManager.cs" />
     <Compile Include="Assets\Scripts\PoolRecycler.cs" />
     <Compile Include="Assets\Scripts\RandomRotator.cs" />
     <Compile Include="Assets\Scripts\SaveDataManager.cs" />
     <Compile Include="Assets\Scripts\ScoreSystem.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UpgradeSystem.cs" />
+    <Compile Include="Assets\Scripts\boltmover.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Unity/Astro_/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

@@ -16,6 +16,7 @@ public class Asteroid : MonoBehaviour
             PlayerController.reEnque(other.gameObject);
             SoundManager.PlaySound("Explosion");
             ScoreSystem.UpdateScore();
+            Points.getPoints();
         }else if (other.gameObject.tag.Equals("ship"))
         {
             MenuManager.DeadMenu();

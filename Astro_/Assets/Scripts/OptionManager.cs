@@ -10,12 +10,6 @@ public class OptionManager : MonoBehaviour
     AudioClip background, shoot, explode;
     private void Awake()
     {
-        Debug.Log("Called OptionManager");
-
-        background = Resources.Load<AudioClip>("bensound-scifi");
-        shoot = Resources.Load<AudioClip>("PlayerShoot");
-        explode = Resources.Load<AudioClip>("Explosion");
-        audio = GetComponent<AudioSource>();
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -26,7 +20,15 @@ public class OptionManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+    }
+    private void Start()
+    {
+        Debug.Log("Called OptionManager");
 
+        background = Resources.Load<AudioClip>("bensound-scifi");
+        shoot = Resources.Load<AudioClip>("PlayerShoot");
+        explode = Resources.Load<AudioClip>("Explosion");
+        audio = GetComponent<AudioSource>();
     }
 
     public void Shoot()

@@ -23,16 +23,19 @@ public class MenuManager : MonoBehaviour
         setFinalScore = false;
         planealive = true;
         Time.timeScale = 1;
-        if (PlayerPrefs.GetInt("craft", 0) == 0)
+        if (PlayerPrefs.GetInt("craft") == 0)
         {
+            PlayerController.CraftSetup(PlayerPrefs.GetInt("Heli_LB"), PlayerPrefs.GetInt("Heli_BA"), PlayerPrefs.GetInt("Heli_MM"));
             Instantiate(Ship[0], Ship[0].transform.position, Quaternion.identity);
         }
-        else if (PlayerPrefs.GetInt("craft", 1) == 1)
+        else if (PlayerPrefs.GetInt("craft") == 1)
         {
+            PlayerController.CraftSetup(PlayerPrefs.GetInt("SpaceShip_LB"),PlayerPrefs.GetInt("SpaceShip_BA"),PlayerPrefs.GetInt("SpaceShip_MM"));
             Instantiate(Ship[1], Ship[1].transform.position, Quaternion.identity);
         }
-        else if (PlayerPrefs.GetInt("craft", 2) == 2)
+        else if (PlayerPrefs.GetInt("craft") == 2)
         {
+            PlayerController.CraftSetup(PlayerPrefs.GetInt("Corvette_LB"),PlayerPrefs.GetInt("Corvette_BA"),PlayerPrefs.GetInt("Corvette_MM"));
             Instantiate(Ship[2], Ship[2].transform.position, Quaternion.identity);
         }
     }
