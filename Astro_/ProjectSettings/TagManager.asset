@@ -11,6 +11,8 @@ TagManager:
   - counter
   - BoltCollector
   - AstroCollector
+  - health
+  - boss
   layers:
   - Default
   - TransparentFX

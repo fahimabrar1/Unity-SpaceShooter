@@ -10,6 +10,7 @@ public class Mover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    
         if (gameObject.tag.Equals("asteriod"))
         {
             speed = -Random.Range(20, 35);

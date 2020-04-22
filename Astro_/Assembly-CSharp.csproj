@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\Asteroid.cs" />
     <Compile Include="Assets\Scripts\AstroParticles.cs" />
     <Compile Include="Assets\Scripts\BackgroundMover.cs" />
+    <Compile Include="Assets\Scripts\Boss.cs" />
+    <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\GameHazard.cs" />
     <Compile Include="Assets\Scripts\HomeScreenManager.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />

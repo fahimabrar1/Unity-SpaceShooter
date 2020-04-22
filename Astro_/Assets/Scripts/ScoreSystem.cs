@@ -44,4 +44,8 @@ public class ScoreSystem : MonoBehaviour
     {
         return score;
     }
+    public static int getScoreCount()
+    {
+        return counter;
+    }
 }

@@ -109,7 +109,7 @@ public class UpgradeSystem : MonoBehaviour
     {
         //set to 15000
         int powerup = PlayerPrefs.GetInt(name);
-        if (value > 0 && powerup < 5)
+        if (value > 0 && powerup < 4)
         {
             value -= 1;
             point.text = value.ToString();

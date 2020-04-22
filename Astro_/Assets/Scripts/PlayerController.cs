@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     Touch touch;
     Vector3 vector,direction;
     bool fire;
-    static int boltController,missile;
+    static int boltController,missile, boltspeed;
     //Object Pulling
 
     public static Queue<GameObject> boltqueue;
@@ -124,17 +124,31 @@ public class PlayerController : MonoBehaviour
     public void gefromBoltQueue()
     {
         GameObject obj, obj1, obj2, obj3, obj4;
-
+        Rigidbody rg, rg1, rg2, rg3, rg4;
         switch (boltController) {
             case 1:
                 obj = boltqueue.Dequeue();
+
+                rg = obj.GetComponent<Rigidbody>();
+                rg.velocity = obj.transform.forward * boltspeed;
+
                 obj.SetActive(true);
+                
                 obj.transform.position = spawns[2].transform.position;
+                
                 obj.transform.rotation = spawns[2].transform.rotation;
+               
                 break;
+
             case 2:
                 obj = boltqueue.Dequeue();
                 obj1 = boltqueue.Dequeue();
+
+                rg = obj.GetComponent<Rigidbody>();
+                rg.velocity = obj.transform.forward * boltspeed;
+                rg1 = obj1.GetComponent<Rigidbody>();
+                rg1.velocity = obj1.transform.forward * boltspeed;
+               
                 obj.SetActive(true);
                 obj1.SetActive(true);
 
@@ -143,11 +157,21 @@ public class PlayerController : MonoBehaviour
 
                 obj.transform.rotation = spawns[1].transform.rotation;
                 obj1.transform.rotation = spawns[3].transform.rotation;
+                
                 break;
+
             case 3:
                 obj = boltqueue.Dequeue();
                 obj1 = boltqueue.Dequeue();
                 obj2 = boltqueue.Dequeue();
+
+                rg = obj.GetComponent<Rigidbody>();
+                rg.velocity = obj.transform.forward * boltspeed;
+                rg1 = obj1.GetComponent<Rigidbody>();
+                rg1.velocity = obj1.transform.forward * boltspeed;
+                rg2 = obj2.GetComponent<Rigidbody>();
+                rg2.velocity = obj2.transform.forward * boltspeed;
+
                 obj.SetActive(true);
                 obj1.SetActive(true);
                 obj2.SetActive(true);
@@ -159,13 +183,27 @@ public class PlayerController : MonoBehaviour
                 obj.transform.rotation = spawns[1].transform.rotation;
                 obj1.transform.rotation = spawns[2].transform.rotation;
                 obj2.transform.rotation = spawns[3].transform.rotation;
+               
                 break;
+
             case 4:
                 obj = boltqueue.Dequeue();
                 obj1 = boltqueue.Dequeue();
                 obj2 = boltqueue.Dequeue();
                 obj3 = boltqueue.Dequeue();
                 obj4 = boltqueue.Dequeue();
+
+                rg = obj.GetComponent<Rigidbody>();
+                rg.velocity = obj.transform.forward * boltspeed;
+                rg1 = obj1.GetComponent<Rigidbody>();
+                rg1.velocity = obj1.transform.forward * boltspeed;
+                rg2 = obj2.GetComponent<Rigidbody>();
+                rg2.velocity = obj2.transform.forward * boltspeed; 
+                rg3 = obj3.GetComponent<Rigidbody>();
+                rg3.velocity = obj3.transform.forward * boltspeed;
+                rg4 = obj4.GetComponent<Rigidbody>();
+                rg4.velocity = obj4.transform.forward * boltspeed;
+
                 obj.SetActive(true);
                 obj1.SetActive(true);
                 obj2.SetActive(true);
@@ -178,7 +216,6 @@ public class PlayerController : MonoBehaviour
                 obj3.transform.position = spawns[3].transform.position;
                 obj4.transform.position = spawns[4].transform.position;
                
-
                 obj.transform.rotation = spawns[0].transform.rotation;
                 obj1.transform.rotation = spawns[1].transform.rotation;
                 obj2.transform.rotation = spawns[2].transform.rotation;
@@ -189,18 +226,31 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("bolt"))
+        {
+            MenuManager.DeadMenu();
+            gameObject.SetActive(false); 
+            PlaneParticles.Particles();
+            GameHazard.playeralive = false;
+            SoundManager.PlaySound("Explosion");
+            other.gameObject.SetActive(false);
+        }
+    }
     public static void reEnque(GameObject gameObject)
     {
-        
-        gameObject.transform.position = Vector3.zero;
-        gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+        Rigidbody rg = gameObject.GetComponent<Rigidbody>();
+        Transform t = gameObject.GetComponent<Transform>();
+        t.rotation = Quaternion.Euler(Vector3.zero);
+        rg.velocity= Vector3.zero;
         gameObject.SetActive(false);
         boltqueue.Enqueue(gameObject);
     }
     public static void CraftSetup(int LB , int BA , int MM)
     {
         boltController = LB;
-        boltmover.speed = BA;
+        boltspeed = BA;
         missile = MM;
     }
 }

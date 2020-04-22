@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    
+    Camera camera;
+    public Slider slider;
 
+    private void Start()
+    {
+        camera = FindObjectOfType<Camera>();
+
+        slider.transform.LookAt(camera.transform,camera.transform.position);
+    }
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
