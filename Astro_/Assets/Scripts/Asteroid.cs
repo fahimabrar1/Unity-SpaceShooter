@@ -5,15 +5,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    Camera camera;
-    public Slider slider;
-
-    private void Start()
-    {
-        camera = FindObjectOfType<Camera>();
-
-        slider.transform.LookAt(camera.transform,camera.transform.position);
-    }
+   
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +29,14 @@ public class Asteroid : MonoBehaviour
             SoundManager.PlaySound("Explosion");
 
             GameHazard.playeralive = false;
+        }else if (other.gameObject.tag.Equals("missile"))
+        {
+            AstroParticles.Astro(gameObject.transform);
+            GameHazard.reEnque(gameObject);
+            SoundManager.PlaySound("Explosion");
+            ScoreSystem.UpdateScore();
+            Points.getPoints();
+            Destroy(other.gameObject.transform.parent.gameObject);
         }
     }
 }

@@ -7,21 +7,24 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
    
-    public GameObject panel,pausebutton,death;
+    public GameObject panel,pausebutton,death,win;
     public static bool paused;
     public GameObject[] Ship;
-    public static bool planealive, setFinalScore;
+    public static bool planealive, setFinalScore, bossalive;
     public Text score;
     string getscore;
+
     // Start is called before the first frame update
     void Start()
     {
         pausebutton.SetActive(true);
         panel.SetActive(false);
+        win.SetActive(false);
         death.SetActive(false);
         paused = false;
         setFinalScore = false;
         planealive = true;
+        bossalive = true;
         Time.timeScale = 1;
         if (PlayerPrefs.GetInt("craft") == 0)
         {
@@ -52,21 +55,35 @@ public class MenuManager : MonoBehaviour
                 setScore();
             }
             PauseGame();
+        }else if (planealive && !bossalive)
+        {
+            if (!setFinalScore)
+            {
+                setFinalScore = true;
+
+                setScore();
+            }
+            PauseGame();
         }
     }
     
     public void PauseGame()
     {
-        if (!paused && planealive)
+        if (!paused && !bossalive && planealive)
+        {
+            score.text = getscore;
+            win.SetActive(true);
+        }else if(!paused && !planealive && bossalive)
+        {
+            score.text = getscore;
+            death.SetActive(true);
+        }
+        else if (!paused && planealive)
         {
             paused = true;
             panel.SetActive(true);
             pausebutton.SetActive(false);
             Time.timeScale = 0;
-        }else if(!paused && !planealive)
-        {
-            score.text = getscore;
-            death.SetActive(true);
         }
     }
     public void PlayGame()
@@ -82,6 +99,10 @@ public class MenuManager : MonoBehaviour
     public static void DeadMenu()
     {
         planealive = false;
+    }
+    public static void WinMenu()
+    {
+        bossalive = false;
     }
     public void RestartGame()
     {

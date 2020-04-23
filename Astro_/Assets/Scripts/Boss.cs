@@ -8,18 +8,20 @@ public class Boss : MonoBehaviour
 {
     Transform transform;
     Rigidbody rigidbody;
-    bool bossSpawned, reached, alive;
-
+    bool bossSpawned, reached, alive, missileactive;
+    public GameObject missile;
     float xMax, xMin;
-    public GameObject[] boltSpawner;
-    public GameObject Laser;
+    public Transform[] boltSpawner;
+    
+    Transform player;
     public Slider slider;
     static float damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("ship").GetComponent<Transform>();
+        missileactive = false;
         damage = 0.001f;
         xMax = 36;
         xMin = -36;
@@ -28,7 +30,7 @@ public class Boss : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         bossSpawned = false;
         alive = true;
-
+        slider.value = 1;
         slider.gameObject.SetActive(false);
         
     }
@@ -36,11 +38,24 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ScoreSystem.getScoreCount() > 45)
+        if(slider.value <0.5)
+        {
+            boltSpawner[0].LookAt(player.transform.position);
+            boltSpawner[1].LookAt(player.transform.position);
+            boltSpawner[2].LookAt(player.transform.position);
+            if (!missileactive)
+            {
+                missileactive = true;
+                StartCoroutine(MissileFire());
+            }
+        }
+
+        if (ScoreSystem.getScoreCount() > 4500)
         {
             if (!bossSpawned)
             {
                 bossSpawned = true;
+                GameHazard.playeralive = false;
                 Debug.Log(ScoreSystem.getScoreCount());
                 StartCoroutine(Mover());
                 MoveToAction();
@@ -74,7 +89,8 @@ public class Boss : MonoBehaviour
     }
     IEnumerator Action()
     {
-
+       
+        
         while (alive)
         {
             float xPos = UnityEngine.Random.Range(xMin,xMax);
@@ -92,26 +108,40 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
         }
     }
-    void BurstFire()
+    IEnumerator MissileFire()
     {
+        if (slider.value < 0.9)
+        {
 
+            while (alive)
+            {
+                int randspawn = UnityEngine.Random.Range(0,2);
+
+                Rigidbody rg;
+                GameObject obj = Instantiate(missile,boltSpawner[randspawn].position,boltSpawner[randspawn].rotation);
+                rg = obj.GetComponent<Rigidbody>();
+                rg.velocity = obj.transform.forward * 20;
+
+                int rand = UnityEngine.Random.Range(1, 3);
+                yield return new WaitForSeconds(rand);
+            }
+        }
     }
     public void Damage()
     {
         if (slider.value > 0)
         {
             slider.value -= damage;
+            if(slider.value <=0)
+            {
+                alive = false;
+                MenuManager.WinMenu();
+                gameObject.SetActive(false);
+                SoundManager.PlaySound("Explosion");
+            }
         }
-        else
-        {
-            alive = false;
-            gameObject.SetActive(false);
-            SoundManager.PlaySound("Explosion");
-        }
+        
     }
-    void AngularBurstFire()
-    {
-
-    }
+   
 }
 

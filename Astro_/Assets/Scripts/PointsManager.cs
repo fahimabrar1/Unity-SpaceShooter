@@ -32,7 +32,7 @@ public class PointsManager : MonoBehaviour
     public static void setPoints(string p)
     {
         point = p;
-        PlayerPrefs.SetString("PP", "0");
+        PlayerPrefs.SetString("PP", point);
     }
     public static string getPoints()
     {

@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigidbody;
     [Range(10, 35)]
     public float speed,tilt;
-    public GameObject bolt,Paricle;
+    public GameObject bolt,missileObj,Paricle;
     public Boundry boundry;
     public GameObject[] spawns;
+    public Transform Missilespawn;
     Touch touch;
     Vector3 vector,direction;
     bool fire;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerPrefs.SetInt("boltcount",4);
         boltqueue = new Queue<GameObject>();
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 500; i++)
         {
             GameObject obj = Instantiate(bolt);
             obj.transform.parent = GameObject.FindGameObjectWithTag("BoltCollector").transform;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator UPDATE()
     {
+        StartCoroutine(Missile());
         while (true)
         {
             if (fire)
@@ -65,6 +67,81 @@ public class PlayerController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.4f);
+        }
+    }
+
+    IEnumerator Missile()
+    {       
+        Rigidbody rg,rg1,rg2;
+        GameObject obj,obj1,obj2;
+        while (true)
+        {
+            
+            switch (missile)
+            {
+                case 1:
+                    obj = Instantiate(missileObj);
+                    rg = obj.GetComponent<Rigidbody>();
+
+                    obj.transform.position = Missilespawn.position;
+                    
+                    obj.transform.rotation = Missilespawn.rotation;
+                    rg.velocity = obj.transform.forward * 30;
+                    yield return new WaitForSeconds(1);
+                    
+                    break;
+                case 2:
+                    obj = Instantiate(missileObj);
+                    rg = obj.GetComponent<Rigidbody>();
+
+                    obj.transform.position = Missilespawn.position;
+
+                    obj.transform.rotation = Missilespawn.rotation;
+                    rg.velocity = obj.transform.forward * 30;
+                    yield return new WaitForSeconds(1);
+
+                    obj1 = Instantiate(missileObj);
+                    rg1 = obj1.GetComponent<Rigidbody>();
+
+                    obj1.transform.position = Missilespawn.position;
+
+                    obj1.transform.rotation = Missilespawn.rotation;
+                    rg1.velocity = obj1.transform.forward * 30;
+                    yield return new WaitForSeconds(1);
+
+
+                    break;
+                case 3:
+                    obj = Instantiate(missileObj);
+                    rg = obj.GetComponent<Rigidbody>();
+
+                    obj.transform.position = Missilespawn.position;
+
+                    obj.transform.rotation = Missilespawn.rotation;
+                    rg.velocity = obj.transform.forward * 30;
+                    yield return new WaitForSeconds(1);
+
+                    obj1 = Instantiate(missileObj);
+                    rg1 = obj1.GetComponent<Rigidbody>();
+
+                    obj1.transform.position = Missilespawn.position;
+
+                    obj1.transform.rotation = Missilespawn.rotation;
+                    rg1.velocity = obj1.transform.forward * 30;
+                    
+                    
+                    obj2 = Instantiate(missileObj);
+                    rg2 = obj2.GetComponent<Rigidbody>();
+
+                    obj2.transform.position = Missilespawn.position;
+
+                    obj2.transform.rotation = Missilespawn.rotation;
+                    rg2.velocity = obj2.transform.forward * 30;
+
+                    break;
+
+            }
+            yield return new WaitForSeconds(8f);
         }
     }
    

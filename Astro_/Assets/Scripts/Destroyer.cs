@@ -16,6 +16,23 @@ public class Destroyer : MonoBehaviour
             PlayerController.reEnque(other.gameObject);
             SoundManager.PlaySound("Explosion");
         }
+        else if (other.gameObject.tag.Equals("misssile"))
+        {
+            Boss boss = FindObjectOfType<Boss>();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            boss.Damage();
+            //Bolt Queuing
+            Destroy(other.gameObject);
+            SoundManager.PlaySound("Explosion");
+        }
         else if (other.gameObject.tag.Equals("ship"))
         {
             MenuManager.DeadMenu();

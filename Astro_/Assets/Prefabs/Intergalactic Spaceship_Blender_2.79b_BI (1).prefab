@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 8381403369670039436}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3104988358471174520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2922455616833463096}
+  m_Layer: 0
+  m_Name: Missile Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2922455616833463096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3104988358471174520}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: -0.03777965, z: -0.017999964}
+  m_LocalScale: {x: 0.009999999, y: 0.009999972, z: 0.007978663}
+  m_Children: []
+  m_Father: {fileID: 8630164997235422582}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3175090470179694570
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +153,7 @@ Transform:
   - {fileID: 8656633578563984535}
   - {fileID: 4954406434476951692}
   m_Father: {fileID: 8630164997235422582}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7775617449870590289
 GameObject:
@@ -266,6 +296,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -0.040000923}
   m_LocalScale: {x: 100, y: 125.33419, z: 100.000206}
   m_Children:
+  - {fileID: 2922455616833463096}
   - {fileID: 8381403369670039436}
   m_Father: {fileID: 8630164997979194941}
   m_RootOrder: 0
@@ -5163,6 +5194,8 @@ MonoBehaviour:
   speed: 0
   tilt: 12.83
   bolt: {fileID: 1853845198249300313, guid: b537ed616ea04ee44b5b5cffd83f16cf, type: 3}
+  missileObj: {fileID: 4398018982524526636, guid: c7e2a54cd2f294344983361989d93b97,
+    type: 3}
   Paricle: {fileID: 8630164997576451196}
   boundry:
     xMin: -38
@@ -5175,3 +5208,4 @@ MonoBehaviour:
   - {fileID: 8178226039499631913}
   - {fileID: 41198552327055363}
   - {fileID: 7775617449870590289}
+  Missilespawn: {fileID: 2922455616833463096}

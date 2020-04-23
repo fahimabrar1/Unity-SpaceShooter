@@ -4838,7 +4838,7 @@ GameObject:
   - component: {fileID: 1777867527671896516}
   m_Layer: 0
   m_Name: HeliShip
-  m_TagString: ship
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4922,7 +4922,7 @@ Transform:
   - {fileID: 265856426149782031}
   - {fileID: 3909557734238105366}
   m_Father: {fileID: 1777867527847106464}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1777867527847106467
 GameObject:
@@ -4955,6 +4955,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2569596524351527369}
+  - {fileID: 6792986416003387643}
   - {fileID: 1777867527833685123}
   m_Father: {fileID: 1777867527671896516}
   m_RootOrder: 0
@@ -5004,6 +5005,8 @@ MonoBehaviour:
   speed: 0
   tilt: 12.83
   bolt: {fileID: 1853845198249300313, guid: b537ed616ea04ee44b5b5cffd83f16cf, type: 3}
+  missileObj: {fileID: 4398018982524526636, guid: c7e2a54cd2f294344983361989d93b97,
+    type: 3}
   Paricle: {fileID: 1777867526418155426}
   boundry:
     xMin: -38
@@ -5016,6 +5019,7 @@ MonoBehaviour:
   - {fileID: 1568917374826932999}
   - {fileID: 2393116205160492784}
   - {fileID: 4664291800908740519}
+  Missilespawn: {fileID: 6792986416003387643}
 --- !u!1 &2393116205160492784
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,3 +5159,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &8371409129170753714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6792986416003387643}
+  m_Layer: 0
+  m_Name: Missile Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6792986416003387643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371409129170753714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.87, z: 6.9100018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1777867527847106464}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

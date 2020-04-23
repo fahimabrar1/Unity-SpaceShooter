@@ -13,6 +13,7 @@ TagManager:
   - AstroCollector
   - health
   - boss
+  - missile
   layers:
   - Default
   - TransparentFX

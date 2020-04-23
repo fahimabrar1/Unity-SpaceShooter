@@ -109,9 +109,9 @@ public class UpgradeSystem : MonoBehaviour
     {
         //set to 15000
         int powerup = PlayerPrefs.GetInt(name);
-        if (value > 0 && powerup < 4)
+        if (value > 15000 && powerup < 4)
         {
-            value -= 1;
+            value -= 15000;
             point.text = value.ToString();
             PointsManager.setPoints(point.text);
             powerup++;
@@ -140,9 +140,9 @@ public class UpgradeSystem : MonoBehaviour
     void BoltUp(string name)
     {
         int boltup = PlayerPrefs.GetInt(name);
-        if (value > 1 && boltup < 36)
+        if (value > 2000 && boltup < 36)
         {
-            value -= 2;
+            value -= 2000;
             point.text = value.ToString();
             PointsManager.setPoints(point.text);
             boltup++;
@@ -171,7 +171,7 @@ public class UpgradeSystem : MonoBehaviour
     void MissileUp(string name)
     {
         int missileup = PlayerPrefs.GetInt(name);
-        if (value > 50000 && missileup < 3)
+        if (value >= 50000 && missileup < 3)
         {
             value -= 50000;
             point.text = value.ToString();

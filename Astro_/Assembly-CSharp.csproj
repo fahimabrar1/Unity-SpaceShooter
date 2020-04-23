@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\AstroParticles.cs" />
     <Compile Include="Assets\Scripts\BackgroundMover.cs" />
     <Compile Include="Assets\Scripts\Boss.cs" />
+    <Compile Include="Assets\Scripts\BossMissiles.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\GameHazard.cs" />
     <Compile Include="Assets\Scripts\HomeScreenManager.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\OptionManager.cs" />
     <Compile Include="Assets\Scripts\PlaneParticles.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerMissile.cs" />
     <Compile Include="Assets\Scripts\Points.cs" />
     <Compile Include="Assets\Scripts\PointsManager.cs" />
     <Compile Include="Assets\Scripts\PoolRecycler.cs" />
