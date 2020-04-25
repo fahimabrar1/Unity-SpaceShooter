@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Points : MonoBehaviour
 {
+/*---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+In this Script is Responsible for getting points from Score System and
+set the points on Points Managers for future purpose.
+
+----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------*/
+
     static Text points;
     static string count;
     void Start()

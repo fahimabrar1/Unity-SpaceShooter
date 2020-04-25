@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class UpgradeSystem : MonoBehaviour
 {
+/*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+ This Script is Responsible for Score Management in The Game UI.
+
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
+
     public Image Craft;
     public Sprite[] CraftSprites;
     public Text point,CraftLB,CraftBA,CraftMM;
@@ -24,45 +32,12 @@ public class UpgradeSystem : MonoBehaviour
         point.text = PointsManager.getPoints();
         int.TryParse(point.text,out value);
         Debug.Log(value);
-        if(PlayerPrefs.GetInt("start")==1)
-        {
-            PlayerPrefs.SetInt("start",1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("start", 0);
-        }
-        SetCraftDetails();
+     
 
         GetCraftDetails(i);
     }
 
-    /*---------------------------
-     -----------Temp Changes-----
-     ----------------------------*/
-    void SetCraftDetails()
-    {
-
-        if (PlayerPrefs.GetInt("start", 0) == 0)
-        {
-            PlayerPrefs.SetInt("start", 1);
-
-            PlayerPrefs.SetInt("Heli_LB", 1);
-            PlayerPrefs.SetInt("Heli_BA", 25);
-            PlayerPrefs.SetInt("Heli_MM", 0);
-
-            PlayerPrefs.SetInt("SpaceShip_LB", 1);
-            PlayerPrefs.SetInt("SpaceShip_BA", 25);
-            PlayerPrefs.SetInt("SpaceShip_MM", 0);
-
-            PlayerPrefs.SetInt("Corvette_LB", 1);
-            PlayerPrefs.SetInt("Corvette_BA", 25);
-            PlayerPrefs.SetInt("Corvette_MM", 0);
-        }
-    }
-    /*---------------------------
-      -----------Temp Changes-----
-      ----------------------------*/
+    //GetCraftDetails)( function gets the craft details when scene is changed to upgrade setting.
 
     void GetCraftDetails(int index)
     {
@@ -89,6 +64,9 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    //LightingBolts() funtions is used in Lighting bolt upgrade button.
+    //                  it tracks the ship and upgrades its bolt power.
+
     public void LightingBolts() 
     {
         switch (PlayerPrefs.GetInt("craft")) {
@@ -104,6 +82,8 @@ public class UpgradeSystem : MonoBehaviour
         }
         
     }
+
+    //PowerUp() funtions is used Upgrade bolt power.
 
     void PowerUp(string name)
     {
@@ -121,6 +101,9 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    //BoltAcceleratior() funtions is used in Bolt Accelerator upgrade button.
+    //                  it tracks the ship and upgrades its Bolt Accelerator.
+
     public void BoltAcceleratior() 
     {
         switch (PlayerPrefs.GetInt("craft"))
@@ -136,7 +119,9 @@ public class UpgradeSystem : MonoBehaviour
                 break;
         }
     }
-    
+
+    //BoltUp() funtions is used to upgrade Bolt Accelerator.
+
     void BoltUp(string name)
     {
         int boltup = PlayerPrefs.GetInt(name);
@@ -152,6 +137,9 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    //Missiles() funtions is used in Missile upgrade button.
+    //                  it tracks the ship and upgrades its Missile.
+    
     public void Missiles()
     {
         switch (PlayerPrefs.GetInt("craft"))
@@ -168,6 +156,8 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    //MissileUp() funtions is used to upgrade its Missile.
+
     void MissileUp(string name)
     {
         int missileup = PlayerPrefs.GetInt(name);
@@ -183,6 +173,8 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    //NextCraft() function Changes to next craft in Upgrade Setting.
+
     public void NextCraft()
     {
 
@@ -197,6 +189,8 @@ public class UpgradeSystem : MonoBehaviour
             GetCraftDetails(i);
         }
     }
+
+    //PrevCraft() function Changes to previous craft in Upgrade Setting.
 
     public void PrevCraft()
     {

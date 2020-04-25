@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+/*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+    This Script Controls The Behaivior Of the Ship.
+    It Controls Movement, Tilt , shooting.
+    Used Both Controls For Andround And Windows Platform.
+
+        For Android , ship shoots continously while holding and draging through screen.
+        For Windowns, ship shoots on Click and and moves on Axis.
+
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
+
+
     Rigidbody rigidbody;
     [Range(10, 35)]
     public float speed,tilt;
@@ -18,7 +33,7 @@ public class PlayerController : MonoBehaviour
     static int boltController,missile, boltspeed;
     //Object Pulling
 
-    public static Queue<GameObject> boltqueue;
+    private static Queue<GameObject> boltqueue;
 
 
     private void Awake()
@@ -30,19 +45,24 @@ public class PlayerController : MonoBehaviour
     {
         PlayerPrefs.SetInt("boltcount",4);
         boltqueue = new Queue<GameObject>();
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 250; i++)
         {
             GameObject obj = Instantiate(bolt);
             obj.transform.parent = GameObject.FindGameObjectWithTag("BoltCollector").transform;
             obj.SetActive(false);
             boltqueue.Enqueue(obj);
         }
+       
         speed = 20;
         tilt = 1;
         fire = false;
         StartCoroutine(UPDATE());
+        StartCoroutine(Missile());
+
     }
-   
+
+    //  Update() funtions is responsible for Shooting in Windows Platform.  
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !MenuManager.paused)
@@ -52,9 +72,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //  UPDATE() funtions is responsible for Shooting in Android Platform.
+
     IEnumerator UPDATE()
     {
-        StartCoroutine(Missile());
         while (true)
         {
             if (fire)
@@ -69,6 +90,8 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
         }
     }
+
+    //  Missile() funtions is responsible for Shooting Missiles From Both Platforms.
 
     IEnumerator Missile()
     {       
@@ -145,9 +168,11 @@ public class PlayerController : MonoBehaviour
         }
     }
    
-    // Update is called once per fram e
+    // FixedUpdate() function is Responsible For Movements in Both Platforms.
+
     void FixedUpdate()
     {
+        //This Section Is Responsible for Android Touch Movement.
         if (Input.touchCount > 0)
         {
             if (!fire)
@@ -161,7 +186,7 @@ public class PlayerController : MonoBehaviour
                 vector.z = vector.z + 8;
                 Debug.Log(vector);
                 direction = (vector - transform.position);
-                rigidbody.velocity = new Vector3(direction.x, 0, direction.z) * speed;
+                rigidbody.velocity = new Vector3(direction.x, 0, direction.z) * speed *4*Time.deltaTime;
                 rigidbody.position = new Vector3(
                 Mathf.Clamp(rigidbody.position.x, boundry.xMin, boundry.xMax),
                 0.0f,
@@ -176,6 +201,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //This Section Is Responsible for Windlwos Axis Movement.
+
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             if (fire)
@@ -197,6 +224,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    //getFromBoltQueue() funtion is responsible for Shooting the Bolt.
+    //      it Dequeues from the Queue , set it's postion and rotation acoodring to the spawn
+    //      position then moves forwards until it hits an asteroid or boss or Hit the Box 
+    //      collider in the Background miage to reEnqueue to be reused.
 
     public void gefromBoltQueue()
     {
@@ -303,9 +334,12 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    //Destroyes The Ship when hit by blue Bolt shot by the boss.
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("bolt"))
+        if (other.gameObject.tag.Equals("bluebolt"))
         {
             MenuManager.DeadMenu();
             gameObject.SetActive(false); 
@@ -315,6 +349,9 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+
+    //ReEnqueues The Destroued bolt in the scene.
+
     public static void reEnque(GameObject gameObject)
     {
         Rigidbody rg = gameObject.GetComponent<Rigidbody>();
@@ -324,6 +361,9 @@ public class PlayerController : MonoBehaviour
         gameObject.SetActive(false);
         boltqueue.Enqueue(gameObject);
     }
+
+    //Gets Ship's Ability at the begginning of the start.
+
     public static void CraftSetup(int LB , int BA , int MM)
     {
         boltController = LB;
@@ -335,6 +375,8 @@ public class PlayerController : MonoBehaviour
 [System.Serializable]
 public class Boundry
 {
+    //This Class is Used to Make Boundry of the Screen for Ship.
+
     public float xMin, xMax, zMin, zMax;
 
 }

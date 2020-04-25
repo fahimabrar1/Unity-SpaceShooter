@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class BackgroundMover : MonoBehaviour
 {
+
+/*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+        In this Script, Background Image is Moved Acoording to The Ship/Plane movement.
+        It is Also also Clamped Slightly To make is more realistic.
+
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
+
+
+
     Rigidbody bg;
     float xMin = -5, xMax = 5;
     float zMin = 5, zMax = 10;
@@ -11,10 +23,7 @@ public class BackgroundMover : MonoBehaviour
     {
         bg = GetComponent<Rigidbody>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+   
 
     // Update is called once per frame
     void FixedUpdate()

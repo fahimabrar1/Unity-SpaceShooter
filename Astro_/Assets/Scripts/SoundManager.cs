@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+/*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+ This Script is Responsible for Score Management in The Game UI.
+
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
+
     static OptionManager optionManager;
     public Toggle sound, music;
     public static bool soundon, musicon;
@@ -35,6 +43,8 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    //boolfuntions() funtion is for Toogle Buttons.
+    
     public void boolfuntions()
     {
         sound.onValueChanged.AddListener(delegate {
@@ -50,7 +60,9 @@ public class SoundManager : MonoBehaviour
             Debug.Log("Music bool :" + musicon);
         });
     }
-  
+
+    //PlaySound() function takes a parameter and playes the sound.
+
     public static void PlaySound(string clip)
     {
         switch (clip)
@@ -69,28 +81,4 @@ public class SoundManager : MonoBehaviour
                 break;
         }
     }
-    /*public  void SoundSystem()
-    {
-        if (soundon)
-        {
-            soundon = false;
-        }
-        else
-        {
-           soundon = true;
-        }
-    }
-    public void MusicSystem()
-    {
-        if (musicon)
-        {
-            musicon = false;
-            
-        }
-        else
-        {
-            musicon = true;
-            Debug.Log("audio Played on MusicSystem");
-        }
-    }*/
 }

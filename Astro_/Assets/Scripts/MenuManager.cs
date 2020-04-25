@@ -6,7 +6,14 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-   
+/*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+        This Script is Responsible To Handle the in game UI.
+        It also assigns the player stats before it spawns.
+ 
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
     public GameObject panel,pausebutton,death,win;
     public static bool paused;
     public GameObject[] Ship;
@@ -26,6 +33,9 @@ public class MenuManager : MonoBehaviour
         planealive = true;
         bossalive = true;
         Time.timeScale = 1;
+
+//It Checks Which Craft is Selected by players and what are it's active abilities.
+        
         if (PlayerPrefs.GetInt("craft") == 0)
         {
             PlayerController.CraftSetup(PlayerPrefs.GetInt("Heli_LB"), PlayerPrefs.GetInt("Heli_BA"), PlayerPrefs.GetInt("Heli_MM"));
@@ -43,7 +53,8 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+ //It Sets The UI Scores And Which Panel To get Active According how Player Died or Win
+
     void Update()
     {
         if (!planealive)
@@ -66,18 +77,24 @@ public class MenuManager : MonoBehaviour
             PauseGame();
         }
     }
+ 
+//PauseGame() is responsible to Active The panels Based on Player. Either Paused or Dead or Winn
     
     public void PauseGame()
     {
+        //Win Panel
         if (!paused && !bossalive && planealive)
         {
             score.text = getscore;
             win.SetActive(true);
-        }else if(!paused && !planealive && bossalive)
+        }
+        //Death Panel
+        else if(!paused && !planealive && bossalive)
         {
             score.text = getscore;
             death.SetActive(true);
         }
+        //Pause Panel
         else if (!paused && planealive)
         {
             paused = true;
@@ -86,6 +103,8 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+//PlayeGame() funtion Resumes The Game.
+
     public void PlayGame()
     {
         if (paused && planealive)
@@ -96,24 +115,40 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+//sets if players is dead.
+
     public static void DeadMenu()
     {
         planealive = false;
     }
+
+    //WinMenu() funtion sets if boss is dead.
+
     public static void WinMenu()
     {
         bossalive = false;
     }
+
+    // RestartGame() funtion Restarts the game.
+
     public void RestartGame()
     {
         HomeScreenManager.StopAudio();
         SceneManager.LoadScene("Play");
     }
+
+    //GoToHome() funtion Unpausing the moment and Going home.
+
     public void GoToHome()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Home");
     }
+
+    //setScore() funtion Gets the Score from score system
+
+
     public void setScore()
     {
         getscore = ScoreSystem.getScore().text;

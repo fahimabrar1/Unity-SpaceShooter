@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
+
+ /*---------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+
+ This Script is Responsible for Score Management in The Game UI.
+
+ ----------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------*/
+
     static Text score;
     static int counter,pointsval,tempcounter;
     static string points;
@@ -18,6 +27,8 @@ public class ScoreSystem : MonoBehaviour
         points = pointsval.ToString();
         Debug.Log("Started Score System");
     }
+
+    //UpdateScore() function updates the score whenever an asteroid is Destroyed.
 
     public static void UpdateScore()
     {
@@ -36,14 +47,22 @@ public class ScoreSystem : MonoBehaviour
         
     }
 
+    //getPoints() function returns Points.
+
     public static string getPoints()
     {  
         return points;
     }
+
+    //getScore() function returns Score.
+
     public static Text getScore()
     {
         return score;
     }
+
+    //getScoreCount() function returns Count.
+
     public static int getScoreCount()
     {
         return counter;

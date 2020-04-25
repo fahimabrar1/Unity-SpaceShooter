@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
+
+    /*---------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------
+
+    In this Script Sound and Music is Controlled from Option Settings and Pause Menu.
+
+    ----------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------*/
+
     static OptionManager instance = null;
     AudioSource audio;
     AudioClip background, shoot, explode;
@@ -31,22 +40,35 @@ public class OptionManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    //Soot() funtion plays shooting sound when shot by player.
+    
     public void Shoot()
     {
         audio.PlayOneShot(shoot);
     }
+
+    //Backgrounds() funtion plays Music.
+
     public void Backgrounds()
     {
         audio.PlayOneShot(background);
     }
+
+    //Explode() funtion plays explosion sound when Destroyed.
+
     public void Explode()
     {
         audio.PlayOneShot(explode);
     }
+
+    //StopAudio() funtion stops audio off the background specially(when scene switching to HOME).
+
     public void StopAudio()
     {
         audio.Stop();
     }
+
+    //ToggleSound() funtions is used for toggle buttons.
 
     public void ToggleSound()
     {
@@ -62,6 +84,9 @@ public class OptionManager : MonoBehaviour
             PlayerPrefs.SetInt("Soundmute", 1);
         }
     }
+
+    //ToggleMusic() funtions is used for toggle buttons.
+
     public void ToggleMusic()
     {
         Debug.Log("Entered On Toggle Music in MusicSysstem");

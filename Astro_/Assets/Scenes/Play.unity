@@ -375,7 +375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.0000035762787}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
   m_SizeDelta: {x: 0.30999994, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &174228122
@@ -1110,7 +1110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.048873566, y: 0.030618122}
   m_AnchorMax: {x: 0.95112646, y: 0.056381878}
-  m_AnchoredPosition: {x: -0.102493286, y: 0.2999878}
+  m_AnchoredPosition: {x: -0.102508545, y: 0.2999878}
   m_SizeDelta: {x: 0.20505, y: -0.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474975426
@@ -1826,6 +1826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e21ea811edb574495842ae184b9c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bluebolt: {fileID: 6800140287633924323, guid: 3146956c526cd5d41b2e20a2944f52bd,
+    type: 3}
   missile: {fileID: 6488753084617377752, guid: c3a49b61d9478b24394b6db6502d6167, type: 3}
   boltSpawner:
   - {fileID: 1997002005}
@@ -2226,7 +2228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 0.99363446, y: 0.75}
-  m_AnchoredPosition: {x: 0.020004272, y: 0}
+  m_AnchoredPosition: {x: 0.020019531, y: 0}
   m_SizeDelta: {x: 0.029999971, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1166930317

@@ -16,6 +16,7 @@ public class GameHazard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Queuing Asteroids.
         astros = new Queue<GameObject>();
         for (int i = 0; i < 40; i++)
         {
@@ -28,7 +29,7 @@ public class GameHazard : MonoBehaviour
         playeralive = true;
         spawnwaves();
     }
-
+    //Spawnwaves() funtion is called and it starts a Corroutine for The asteroids to flow Randomly at -(Z-axis).
     private void spawnwaves()
     {
         StartCoroutine(HazardsFromPool());

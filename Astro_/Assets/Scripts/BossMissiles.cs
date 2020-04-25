@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BossMissiles : MonoBehaviour
 {
+    
+    
+/*---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+In this Script Boss Missiles Are Destroyed When hit's the Boundry and Plane.
+
+----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------*/
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("ship"))
